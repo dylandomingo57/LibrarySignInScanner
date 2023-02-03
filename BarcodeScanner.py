@@ -15,8 +15,6 @@ def readBarcode(code):
                 #print("in val")
                 if code in val:
                     return(val)
-                else:
-                    print("Not found, please try again.")
 
 
 if __name__ == "__main__":
