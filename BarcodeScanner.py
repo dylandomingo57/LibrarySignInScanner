@@ -19,6 +19,7 @@ def readBarcode(code):
             for val in row:
                 #print("in val")
                 if code in val:
+<<<<<<< HEAD
                     found = True
                     index = val
     if (found):
@@ -30,6 +31,9 @@ def endProgram():
     f = open("Cheesebread.txt", "a")
     f.write(counter)
     f.close()
+=======
+                    return(val)
+>>>>>>> d3f888b1a8159f4cac7fb59a78f95b7a5ec9ce75
 
 
 if __name__ == "__main__":
