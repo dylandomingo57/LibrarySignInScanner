@@ -2,17 +2,15 @@ import csv
 import datetime
 import atexit
 
-counter = 0
-
 # print ("Current date and time = %s" % e)
 # print ("Today's date:  = %s/%s/%s" % (e.day, e.month, e.year))
-# print ("The time is now: = %s:%s:%s" % (e.hour, e.minute, e.second))
+# print ("The time is now: = %s:%s:%s" % (e.hour, e.minute, e.second)) test
 
 def readBarcode(code):
     found = False
     index = None
-    with open("SY 22-23 Student Barcodes.csv") as csvfile:
-        csv_reader = csv.reader(csvfile)
+    with open("Student Barcodes.csv") as file:
+        csv_reader = csv.reader(file)
         #print("started")
         for row in csv_reader:
             #print("in row")
@@ -26,14 +24,18 @@ def readBarcode(code):
     else:
         return "Not found"
 
-def endProgram():
+"""
+def endProgram(time):
     f = open("Cheesebread.txt", "a")
-    f.write(counter)
+    f.write("\nDate:    ", time)
     f.close()
-
+"""
 
 if __name__ == "__main__":
-    atexit.register(endProgram)
+    startDate = datetime.datetime.now()
+
+    counter = 0
+    # startUpTime = "%s/%s/%s" % (startDate.month, startDate.day, startDate.year)
 
     print("-------------------------------\n|     Library Appender        |\n-------------------------------\n")
     print("To enter a student's name manually, enter their credentials with \"LastName, FirstName\"")
@@ -42,14 +44,13 @@ if __name__ == "__main__":
     print("Enter \"!exit\" to exit the program\n")
 
     while (True):
-
+        currTime = datetime.datetime.now()
+        # atexit.register(endProgram, ("%s/%s/%s" % (currTime.month, currTime.day, currTime.year)))
         id = input()
         name = readBarcode(id)
         
-        e = datetime.datetime.now()
 
         if id == "!exit":
-            endProgram()
             break
 
         if id == "!count":
@@ -62,12 +63,9 @@ if __name__ == "__main__":
             counter += 1
 
             f = open("Cheesebread.txt", "a")
-            f.write(name)
 
-            f.write("\t%s/%s/%s" % (e.month, e.day, e.year))
-            f.write("\t%s:%s:%s" % (e.hour, e.minute, e.second))
-
-            f.write("\n")
+            f.write("%s \t%s\t%s/%s/%s" % (counter, name, currTime.month, currTime.day, currTime.year))
+            f.write("\t%s:%s:%s\n" % (currTime.hour, currTime.minute, currTime.second))
             f.close()
 
             f = open("Cheesebread.txt", "r")
