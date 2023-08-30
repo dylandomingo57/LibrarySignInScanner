@@ -62,13 +62,13 @@ if __name__ == "__main__":
         else:
             counter += 1
 
-            f = open("Cheesebread.txt", "a")
+            f = open("List.txt", "a")
 
             f.write("%s \t%s\t%s/%s/%s" % (counter, name, currTime.month, currTime.day, currTime.year))
             f.write("\t%s:%s:%s\n" % (currTime.hour, currTime.minute, currTime.second))
             f.close()
 
-            f = open("Cheesebread.txt", "r")
+            f = open("List.txt", "r")
             print(f.read())
     quit()
         
